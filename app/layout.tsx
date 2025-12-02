@@ -1,11 +1,19 @@
-import type { Metadata } from "next";
-import React from "react";
 import "./globals.css";
-import { Navbar } from "@/components/components";
-export const metadata: Metadata = {
-  title: "Qalamda | Online maqolalar",
-  description: "Maqolalar joylanadigan o'zbek tilidagi platforma.",
-};
+
+import { Poppins, Playwrite_DE_VA } from "next/font/google";
+
+const playwrite = Playwrite_DE_VA({
+  weight: "400",
+  display: "swap",
+  variable: "--font-playwrite",
+});
+
+const poppins = Poppins({
+  weight: "400",
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-poppins",
+});
 
 export default function RootLayout({
   children,
@@ -15,12 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="/og-image.png" />
-        <link rel="icon" href="/qalamda-favicon.svg?v1" />
+        <title>Qalamda</title>
+        <link rel="shortcut icon" href="favicon.svg" type="image/svg" />
+        <meta
+          name="description"
+          content="Maqolalar o'qish va bilimlaringizni boshqalar bilan ulashish uchun
+            yangi imkoniyat."
+        />
       </head>
-      <body className="bg-[#fffbf2]">
-        <Navbar />
-        <main>{children}</main>
+      <body className={`${playwrite.variable} ${poppins.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
